@@ -57,4 +57,6 @@ It uses a dataset of South Indian celebrity photos for training and testing.
 
 ## Author
 Kaviya M
+<img width="504" height="230" alt="Screenshot 2025-10-29 203805" src="https://github.com/user-attachments/assets/dd22ce68-2416-4f75-96ef-a072178ba3a8" />
+
  0e66919b1bfa00ab2db3ce125c8bdf80d786e41f
