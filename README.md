@@ -1,96 +1,64 @@
-HEAD
-### \# Face Recognition Project
+# Face Recognition Project
 
-### 
+This project implements a face recognition tool using PyTorch. The model is trained to identify South Indian celebrities using a curated dataset of profile photos, showcasing core deep learning and computer vision techniques for image classification.
 
-### This project implements a face recognition tool using PyTorch.
+## Dataset
 
-### It uses a dataset of South Indian celebrity photos for training and testing.
+- **Source:** [South Indian Celebrity Face Dataset on Kaggle](https://www.kaggle.com/datasets/gunarakulangr/south-indian-celebrity-dataset)
+- **Format:** One subfolder per celebrity, each containing facial images.
 
-### 
+## How to Run
 
-### \## How to run
+1. **Install required libraries:**
+pip install torch torchvision matplotlib
+2. **Prepare dataset:**  
+Place all celebrity folders inside
+south-indian-celebrity-dataset/
+3. **Run:**  
+Execute the main script:  
+python python-code.py
 
-### 1\. Install required libraries (Torch, Torchvision, matplotlib, etc.)
+## Model Architecture Choice
 
-### 2\. Place your images in the dataset folder ("south-indian-celebrity-dataset/")
+- **ResNet-18:**  
+This model is chosen for its proven effectiveness in image recognition—with deep residual (skip) connections to address vanishing gradients, enabling stable training even with limited data.  
+ResNet-18 strikes a strong balance between accuracy and resource use, making it ideal for real-world, mid-sized face recognition tasks.
 
-### 3\. Run python-code.py
+## Preprocessing and Data Augmentation
 
-### 
+- **Resizing:** Images are resized to (128x128) for consistent input and better computation.
+- **Normalization:** Pixel values are normalized to [-1, 1], which accelerates and stabilizes learning.
+- **Random Horizontal Flip:** Applied during training to boost data variability and improve the model's robustness to different facial orientations.
 
-### \## Dataset:
-
-### -Source: kagglehub.dataset\_download("gunarakulangr/south-indian-celebrity-dataset")
-
-### \- Format: Each celebrity is a separate folder containing their images
-
-### 
-
-### \## Results
-
-### \- Shows training accuracy, loss, and visualizes predictions
-
-### 
-
-### \## Author
-
-### Kaviya M
-
-### 
-
-# Face-Recognition-mode
-This project implements a face recognition tool using PyTorch.
-It uses a dataset of South Indian celebrity photos for training and testing.
-
-## How to run
-1. Install required libraries (Torch, Torchvision, matplotlib, etc.)
-2. Place your images in the dataset folder ("south-indian-celebrity-dataset/")
-3. Run python-code.py
-
-## Dataset:
--Source: kagglehub.dataset_download("gunarakulangr/south-indian-celebrity-dataset")
-- Format: Each celebrity is a separate folder containing their images
-
-## Model Architecture Choice:
-ResNet-18 as my model architecture.It is known for:
-- Good performance on image classification tasks, even with limited data.  
-- Its use of residual (skip) connections, which help avoid the vanishing gradient problem and allow deeper networks to train effectively.  
-- Being lightweight enough to run on standard hardware while being powerful enough to learn complex face features.  
-This architecture is a strong default option for face recognition projects because it strikes a good balance between accuracy and computational efficiency.  
-
-## Preprocessing and Data Augmentation:
-- Resizing: All images are resized to a fixed dimension (128x128) to ensure a uniform input shape for the model.  
-- Random Horizontal Flip: This randomly flips images during training, exposing the model to mirrored versions of faces to improve generalization.  
-- Normalization: Each pixel is adjusted to have values between -1 and 1, which helps the learning algorithm converge more effectively.  
-
-## Reasoning:  
--Resizing and normalization are vital for consistent, stable learning.  
--Flipping increases data variability, which is important when the dataset is small or lacks diversity.  
-
-## Interpretation of Model Performance:
-From my results:  
--Loss consistently decreases and training accuracy increases across 5 epochs, as shown in the plots and output. This indicates that the model is successfully learning to fit the training data.  
--Test accuracy is modest(~0.17), which is much slightly lower than training accuracy.  
-
-## Strengths:  
--Training metrics (loss and accuracy) improve, demonstrating that the model can recognize patterns in the training set.  
--Data augmentation (horizontal flip) provides slight benefits in preventing overfitting compared to training without it.  
-
-## Weaknesses:  
--Modest test accuracy suggests possible overfitting. The model performs well on familiar data but struggles to generalize to new, unseen faces.  
--Possible issues include having too few training images per class, highly similar backgrounds, or images lacking diversity in pose or lighting.  
+**Why:**  
+These preprocessing steps help the model generalize better, especially when training data is not large or when variation in pose/lighting exists.
 
 ## Results
-- Shows training accuracy, loss, and visualizes predictions
+
+- Model training loss decreased consistently over 5 epochs.
+- Training accuracy improved with each epoch, indicating effective pattern learning.
+- **Test accuracy** reached ~0.17, which—while lower than training accuracy—demonstrates the model's basic generalization ability (see below for strengths/weaknesses).  
+- Sample outputs: The model predicts the celebrity name with an associated confidence, e.g., “Predicted: surya, Confidence: 0.46”.
+  <img width="504" height="230" alt="Screenshot 2025-10-29 203805" src="https://github.com/user-attachments/assets/dfff36af-4d29-45b8-a34c-449c6a4fcd8d" />
+  <img width="1510" height="684" alt="Screenshot 2025-10-29 203702" src="https://github.com/user-attachments/assets/082df07b-77b0-4e2e-9c15-f5d89f0b1325" />
+<img width="563" height="568" alt="Screenshot 2025-10-29 203926" src="https://github.com/user-attachments/assets/3730e4a3-e435-4a38-9206-b0c389941786" />
+
+## Strengths
+
+- Training accuracy and loss both improved promptly, confirming the network's ability to learn facial patterns in the dataset.
+- Augmentation (flipping) helped slightly prevent overfitting and increase robustness versus training-only data.
+
+## Weaknesses
+
+- The test accuracy is modest, indicating possible overfitting and limited generalization to unseen faces.
+- Causes may include limited training images per celebrity, lack of pose/background diversity, or high similarity between samples.
+
+## Model Interpretation
+
+- The model's learning curve demonstrates solid convergence on the provided data.
+- Prominent gap between train and test accuracy highlights the importance of collecting more varied and balanced data for further improvement.
 
 ## Author
 Kaviya M
-
- 0e66919b1bfa00ab2db3ce125c8bdf80d786e41f
- <img width="504" height="230" alt="Screenshot 2025-10-29 203805" src="https://github.com/user-attachments/assets/dd22ce68-2416-4f75-96ef-a072178ba3a8" />
- <img width="1510" height="684" alt="Screenshot 2025-10-29 203702" src="https://github.com/user-attachments/assets/39248e3c-c3ad-406a-952c-3f98fccf2290" />
- <img width="563" height="568" alt="Screenshot 2025-10-29 203926" src="https://github.com/user-attachments/assets/1ebda3b0-ad22-4d6e-b05e-499a0c349246" />
-
 
 
